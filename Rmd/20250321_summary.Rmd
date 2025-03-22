@@ -1,0 +1,381 @@
+---
+title: "FY23.Q1 - FY25.Q3 Summary"
+author: "Stephanie Hickey"
+date: "`r Sys.Date()`"
+output:
+  ioslides_presentation:
+    smaller: yes
+    widescreen: yes
+---
+
+<style type="text/css">
+
+h2 {
+  text-align: left;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+}
+</style>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(patchwork)
+library(hrbrthemes)
+library(lubridate)
+library(ggalluvial)
+
+clients = read.csv("/Users/stephanielepp/Desktop/BioinformaticsCore/bussiness_summaries/clients.csv")
+
+invoiced = 
+  readxl::read_excel("/Users/stephanielepp/Desktop/BioinformaticsCore/bussiness_summaries/invoiced.xlsx") %>%
+  rename(Total.Cost = "Total Cost",
+         Invoice.Date = "Invoice Date")
+
+```
+
+# 
+### Requests by service type
+
+Since August 2022, we have had `r nrow(clients)` client requests, including requests for analysis advice, grant support, and data analysis services, from `r length(unique(clients$PI))` different research groups across `r length(unique(clients$Institution))` institutions.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=5, fig.height=3.5, fig.align='center'}
+tally_service = 
+  clients %>% 
+  group_by(Service.Type) %>%
+  tally()
+
+p = 
+  ggplot(tally_service, aes(x=Service.Type, y=n)) +
+    geom_bar(stat="identity", fill = "#18453B") +
+    geom_text(aes(label=n), vjust=-0.3, size=3.5) +
+    ylab("number of requests") +
+    theme_classic()
+  
+plot(p)
+
+ggsave(p, file = "requests_per_service_type.png", width = 5, height = 3.5)
+```
+
+We have invoiced `r nrow(invoiced)` data analysis projects, totaling `r paste0("$", sum(invoiced$Total.Cost, na.rm = TRUE))` with a median cost of `r paste0("$", median(invoiced$Total.Cost, na.rm = TRUE))` per project.
+
+# 
+### Requests per project type for project types with $>1$ request.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#fig.width = 4, fig.height = 5,fig.align='center'
+tally_service = 
+  clients %>% 
+  select(Project.Type.Broad) %>%
+  mutate(Project.Type.Broad = gsub(", ", ",", Project.Type.Broad)) %>% 
+  mutate(Project.Type.Broad = strsplit(as.character(Project.Type.Broad), ",")) %>% 
+  unnest(Project.Type.Broad) %>%
+  group_by(Project.Type.Broad) %>%
+  tally()
+
+tally_service$Project.Type.Broad <- factor(tally_service$Project.Type.Broad,                  
+                          levels = tally_service$Project.Type.Broad[order(tally_service$n, decreasing = TRUE)])
+
+p = 
+  tally_service %>%
+  filter(n > 1) %>%
+  ggplot(aes(x=Project.Type.Broad, y=n)) +
+    geom_bar(stat="identity", fill = "#18453B") +
+    geom_text(aes(label=n), vjust=-0.3, size=3.5) +
+    ylab("number of requests") +
+    xlab("Project Type") +
+    theme_classic() +
+    theme(axis.text.x = element_text(angle = 45, hjust=1))
+  
+plot(p)
+
+ggsave(p, file = "requests_per_analysis_type.png", width = 7, height = 5)
+```
+
+# 
+### MSU requests per department and college
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+# {r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=8, fig.width=15}
+
+clients =
+  clients %>%
+  rename(Department = "Deparment") %>%
+  mutate(Department = trimws(Department),
+         PI = trimws(PI)) %>%
+  mutate(Department = gsub("Department of ", "", Department)) %>%
+  mutate(College = gsub("College of ", "", College)) %>%
+  mutate(Department = 
+           ifelse(str_detect(Department, "Biochemistry"), 
+                  "Biochemistry & Molecular Biology", Department)) %>%
+  mutate(Department = 
+           ifelse(str_detect(Department, "Molecular Genetics"), 
+                  "Microbiology, Genetics, & Immunology", Department)) %>%
+  mutate(Department = 
+           ifelse(str_detect(Department, "Pathobiology"), 
+                  "Pathobiology and Diagnostic Investigation", Department)) %>%
+  mutate(Department = 
+           ifelse(str_detect(PI, "Kevin Childs"), 
+                  "Genomics Core", Department),
+         Department = 
+           ifelse(str_detect(PI, "Elena Demireva"), 
+                  "Transgenic Core", Department),
+         College = 
+           ifelse(str_detect(Department, "Core"), 
+                  "RTSF", College),
+         PI = 
+           ifelse(str_detect(PI, "Erin Percell"), 
+                  "Erin Purcell", PI),
+         College = 
+           ifelse(str_detect(Department, "Plant, Soil and Microbial Sciences"), 
+                  "CANR", College),
+         College = 
+           ifelse(str_detect(Department, "Microbiology, Genetics, & Immunology"), 
+                  "CNS", College),
+         College = 
+           ifelse(str_detect(Department, "Physiology"), 
+                  "Human Medicine", College))
+
+n_dep = length(clients %>% 
+                 filter(Institution == "MSU",
+                        !is.na(Department)) %>%
+                 pull(Department) %>% 
+                 unique)          
+
+n_college = length(clients %>% 
+                     filter(Institution == "MSU", !is.na(College)) %>% 
+                     pull(College) %>% unique)
+```
+
+Requests come from `r n_dep` departments across `r n_college` colleges.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=4.5, fig.width=7.5}
+tally_dep = 
+  clients %>% 
+  filter(Institution == "MSU",
+         !is.na(Department)) %>%
+  group_by(Department) %>%
+  tally() %>%
+  arrange(desc(n))
+
+tally_dep$Department <- factor(tally_dep$Department,                  
+                          levels = tally_dep$Department[order(tally_dep$n, decreasing = FALSE)])
+
+p1 =
+ggplot(tally_dep, aes(x=Department, y=n)) +
+    geom_bar(stat="identity", fill = "#18453B") +
+    geom_text(aes(label=n), hjust=-0.3, size=2) +
+    ylab("number of requests") +
+    xlab("Department") +
+    theme_classic() +
+    coord_flip()
+    #theme(axis.text.x = element_text(angle = 45, hjust=1))
+
+tally_col = 
+  clients %>% 
+  filter(Institution == "MSU",
+          !is.na(Department)) %>%
+  group_by(College) %>%
+  tally() %>%
+  arrange(desc(n))
+
+tally_col$College <- factor(tally_col$College,                  
+                          levels = tally_col$College[order(tally_col$n, decreasing = FALSE)])
+
+p2 =
+ggplot(tally_col, aes(x=College, y=n)) +
+    geom_bar(stat="identity", fill = "#18453B") +
+    geom_text(aes(label=n), hjust=-0.3, size=3.5) +
+    ylab("number of requests") +
+    xlab("College") +
+    theme_classic() +
+    coord_flip()
+
+p = p1 + p2
+
+tally_river = 
+  clients %>% 
+  filter(Institution == "MSU",
+         !is.na(Department)) %>%
+  group_by(Department, College) %>%   # Group by College and Department
+  tally(name = "department_count") %>%  # Count occurrences of each department, name the count column
+  ungroup() %>%
+  group_by(College) %>%
+  mutate(college_count = sum(department_count)) %>%  # Add total count per college
+  ungroup() %>%
+  mutate(College = paste0(College," (", college_count, ")"),
+         college_count = 
+           ifelse(str_detect(College, "Human Medicine"), 
+                 college_count + .5 , college_count))
+
+tally_river = tally_river[with(tally_river, order(college_count, department_count, College)),]
+
+tally_river$Department = factor(tally_river$Department, levels = tally_river$Department)
+
+tally_river$College = factor(tally_river$College, levels = rev(unique(tally_river$College)))
+
+msu_pallet = c("#18453B", "#49CFA5", "#066B00", "#7bbd00", "#089000", "#044c36", "#8CFF98", "#C3FFEC", "#87FFD9", "#0B9A6D", "#077351")
+
+ggplot(tally_river, aes(x=Department, 
+                        y=department_count, 
+                        fill = College)) +
+    geom_bar(stat="identity") +
+    scale_fill_manual(values = msu_pallet) +
+    geom_text(aes(label=department_count), hjust=-0.3, size=2) +
+    ylab("number of requests") +
+    xlab("Department") +
+    theme_classic() +
+    theme(text = element_text(size = 10)) +
+    coord_flip() 
+ggsave(file = "requests_per_department_college.png", width = 15, height = 10)
+```
+
+# 
+
+### Requests over time
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#, fig.width=9, fig.height=5
+
+clients$Contact_Date = mdy(clients$Contact_Date)
+
+tally_date = 
+  clients %>%
+  #mutate(month = lubridate::floor_date(Contact_Date, "month")) %>%
+  #group_by(month) %>%
+  mutate(Quarter = lubridate::quarter(Contact_Date, type = "year.quarter", fiscal_start = 7)) %>%
+  group_by(Quarter) %>%
+  tally()
+
+# p <- ggplot(tally_date, aes(x=Quarter, y=n)) +
+#   geom_line(color="#18453B") +
+#   geom_point() +
+#   ylab("number of requests") +
+#   scale_x_date(date_labels="%b %y", date_breaks  ="1 month") +
+# theme_minimal()
+
+p <- ggplot(tally_date, aes(x=as.factor(Quarter), y=n, group=1)) +
+  geom_line(color="#18453B") +
+  geom_smooth(method = "lm", se=FALSE, color="#7BBD00") +
+  geom_point(size=1) +
+  geom_label(label = tally_date$n, size = 2.5) + 
+  ylab("number of requests") +
+  xlab("fiscal quarter") +
+theme_minimal()
+  
+p
+
+ggsave(p, file = "requests_per_month.png", width = 9, height = 5)
+```
+
+# 
+
+### Requests over time by service type
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+tally_date = 
+  clients %>%
+  #mutate(month = lubridate::floor_date(Contact_Date, "month")) %>%
+  #group_by(month) %>%
+  mutate(Quarter = lubridate::quarter(Contact_Date, type = "year.quarter", fiscal_start = 7)) %>%
+  group_by(Quarter, Service.Type) %>%
+  tally()
+
+ggplot(tally_date, aes(x = as.factor(Quarter), y = n, fill = Service.Type, label = n)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = msu_pallet[1:4]) +
+  geom_text(size = 3, position = position_stack(vjust = 0.5)) +
+  theme_minimal() +
+  xlab("Quarter") +
+  ylab("Requests")
+
+```
+
+# 
+
+### Total amount invoiced over time by quarter
+
+```{r, echo=FALSE, eval=T, message=FALSE}
+tally_inv = 
+  invoiced %>%
+  #mutate(month = lubridate::floor_date(Contact_Date, "month")) %>%
+  #group_by(month) %>%
+  mutate(Quarter = lubridate::quarter(Invoice.Date, type = "year.quarter", fiscal_start = 7)) %>%
+  group_by(Quarter) %>%
+  summarise(Total.Invoiced = sum(Total.Cost)) %>%
+  mutate(Curency = paste('$',formatC(Total.Invoiced, big.mark=',', format = 'f', digits = 2)))
+
+p <- ggplot(tally_inv, aes(x=as.factor(Quarter), y=Total.Invoiced, group=1)) +
+  geom_line(color="#18453B") +
+  geom_smooth(method = "lm", se=FALSE, color="#7BBD00") +
+  geom_point(size=1) +
+  geom_label(label = tally_inv$Curency, size = 2.5) + 
+  ylab("Total Invoiced") +
+  xlab("fiscal quarter") +
+theme_minimal()
+  
+p
+```
+
+# 
+
+### Total amount invoiced over time by fiscal year
+
+```{r, echo=FALSE, eval=T, message=FALSE}
+tally_inv = 
+  invoiced %>%
+  #mutate(month = lubridate::floor_date(Contact_Date, "month")) %>%
+  #group_by(month) %>%
+  mutate(Quarter = lubridate::quarter(Invoice.Date, type = "year.quarter", fiscal_start = 7),
+         FY = stringr::str_sub(Quarter, 1, 4)) %>%
+  group_by(FY) %>%
+  summarise(Total.Invoiced = sum(Total.Cost)) %>%
+  mutate(Curency = paste('$',formatC(Total.Invoiced, big.mark=',', format = 'f', digits = 2)))
+
+p <- ggplot(tally_inv, aes(x=as.factor(FY), y=Total.Invoiced, group=1)) +
+  geom_line(color="#18453B") +
+  geom_smooth(method = "lm", se=FALSE, color="#7BBD00") +
+  geom_point(size=1) +
+  geom_label(label = tally_inv$Curency, size = 2.5) + 
+  ylab("Total Invoiced") +
+  xlab("fiscal quarter") +
+theme_minimal()
+  
+p
+```
+
+#
+
+### Office hours total visits per month  
+
+```{r, echo=FALSE, eval=T, message=FALSE}
+office_hours =
+  read.csv("/Users/stephanielepp/Desktop/BioinformaticsCore/bussiness_summaries/Bioinformatics_Core_Help_Hours.csv") %>%
+  filter(!is.na(Name))
+
+office_hours$Date = mdy(office_hours$Date)
+
+tally_oh = 
+  office_hours %>%
+  mutate(month = lubridate::floor_date(Date, unit = "month"),
+         month = format(as.Date(month), "%Y-%m")) %>%
+  group_by(month) %>%
+  tally() 
+
+p <- ggplot(tally_oh, aes(x=as.factor(month), y=n, group=1)) +
+  geom_line(color="#18453B") +
+  geom_smooth(method = "lm", se=FALSE, color="#7BBD00") +
+  geom_point(size=1) +
+  geom_label(label = tally_oh$n, size = 2.5) + 
+  ylab("Number of Visits") +
+  xlab("Month") +
+theme_minimal()
+  
+p
+```
+
+Over `r length(unique(tally_oh$month))` months, we have had `r length(unique(office_hours$Name))` unique visitors to our office hours.

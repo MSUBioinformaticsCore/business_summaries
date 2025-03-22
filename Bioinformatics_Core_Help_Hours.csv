@@ -1,0 +1,47 @@
+Date,Name,Email,Notes
+9/3/24,Jacob Zieb,ziebajac@msu.edu,SNP processing and peforming GWAS (long term conversation)
+9/3/24,Yuefan Huang,huang292@msu.edu,Activating HPCC account and working with Jacob
+9/3/24,Raj Chowdanayaka,chowdana@msu.edu,Sharing and archiving data on HPCC
+9/3/24,Scott Tersi,teresisc@msu.edu,Dicussion of career and working at a BioinformaticsCore
+9/10/24,Jacob Zieb,ziebajac@msu.edu,"SNP processing and peforming GWAS (long term conversation), organizing ORIGINS data on HPCC"
+9/10/24,Raj Chowdanayaka,chowdana@msu.edu,Running nf-core pipelines hosted by the Bioinfomratics Core
+9/10/24,Elizabeth McMahon,,Trouble accessing HPCC --> Referred to ICER sysadmins
+9/10/24,Walk-In,,"Running QIIME2, particularly understanding DADA2 inputs"
+9/17/24,Jacob Zieb,ziebajac@msu.edu,Collating IDs across data sets
+9/24/24,Jacob Zieb,ziebajac@msu.edu,ORIGINS
+10/1/24,Jacob Zieb,ziebajac@msu.edu,ORIGINS --> Really need to expand this convo outside of office hours because we need PI input
+10/1/24,Walk-In from the Schrenk Lab,,"Needed help working with a Miniforge install out of their reserach space, followed up with them on Thursday and may have a longer meeting next week"
+10/8/24,Jacob Zieb,ziebajac@msu.edu,ORIGINS --> Trouble shooting code to merge BAM files
+10/8/24,Yosia Mugume (Benning Lab),mugumeyo@msu.edu,"TC-Hunter pipeline on Mac, dealing with python 2/3 version issues in conda when trying to use the TC_hunter.yml file"
+10/8/24,Yan Liu ,liuyan6@msu.edu,"Getting a new version of qiime2-installed via conda, using the new Miniconda3 module "
+10/8/24,Raj Chowdanayaka,chowdana@msu.edu,GFF file formating issues for Nextflow (https://teams.microsoft.com/l/message/19:f754b74d5bcd403cbe02100df1062cf9@thread.tacv2/1728416506818?tenantId=22177130-642f-41d9-9211-74237ad5687d&groupId=80c35f6e-1356-42a9-a8da-296129a27ff7&parentMessageId=1728416506818&teamName=Bioinformatics%20Core-public&channelName=Help_Desk&createdTime=1728416506818) 
+10/15/24,Yosia Mugume (Benning Lab),mugumeyo@msu.edu,"Further troubleshooting TC-Hunter on Mac, have it running to a point be need test data + fix r-circlize"
+10/22/24,NA,NA,
+10/29/24,NA,NA,At a conference
+11/5/24,Jacob Zieb,ziebajac@msu.edu,Getting GCTA to run with SLURM --> Use #/bin/bash --login
+11/5/24,Glorian,berrosvz@msu.edu,Help recreating a pre-existing RNA-Seq analysis from their lab
+11/5/24,Jackson,kubaljac@msu.edu,Installing scanpy with conda & connecting to HPCC with VScode
+11/5/24,Olivia,morr1057@msu.edu,
+11/12/24,NA,NA,I forgot to write things down for this date
+11/19/24,NA,NA,No one at help desk
+11/26/24,Yosia Mugume (Benning Lab),mugumeyo@msu.edu,Generating some instructions from runing TC Hunter on HPCC from scratch
+12/3/24,NA,NA,"Only ICER questions this week, but did refer someone on RT to the BioinformaticsCore help page for nf-core pipeline (RT 78368)"
+12/10/24,Yosia Mugume (Benning Lab),mugumeyo@msu.edu,Finishing the instruction we started on 11/27/2024
+12/10/24,Andrea Luttman ,luttman3@msu.edu,Exploring options from processing sample for methyl-kit + some light code review (BCC137)
+12/17/24,NA,NA,"A walkin and a Zoom call, both about ICER/HPCC stuff"
+1/14/25,Kelly Waters,waters29@msu.edu,Nanopore Data (MetONTIIME and QIIME2)
+2/4/25,Serena Lotreks,lotrecks@msu.edu,"Nextflow pipeline showing errors but output seems fine for that step, will follow up"
+2/11/25,Raj Chowdanayaka,chowdana@msu.edu,"Continue issues with GFF files, switching over to GTF to see if hat works better"
+2/18/25,Raj Chowdanayaka,chowdana@msu.edu,"Helped with adjusting R-code for changes in column names (i.e. ""Condition"" --> ""Species"")"
+2/18/25,Yosia Mugume (Benning Lab),mugumeyo@msu.edu,Working on a new data set for the first project either in Helpdesk or as an ongoing collab with the Benning Lab
+2/18/25,Beth Ottosen,ottosene@msu.edu,"BCC-152. Helped them install TRANSIT2 on HPCC via conda, which might resolve this request"
+2/25/25,Raj Chowdanayaka,chowdana@msu.edu,"Found limitations with orthoDB, which is missing gene name information we need for annotaton for some species of interest"
+2/25/25,Yosia Mugume (Benning Lab),mugumeyo@msu.edu,Transferred new data to Yosia and helped setup the next run
+2/25/25,Jacob Zieb,ziebajac@msu.edu,Generally discussing GWAS and stats
+2/25/25,Megan Brown,,Challenges of expression analysis in a plant denovo-transcriptome
+2/25/25,Glorian,,Updating GFF informtion of viral genes concatenated into the horse genome
+3/5/25,Megan Brown,,"Help running the Augustus gene annotation pipeline in Nextflow, following up with her on 3/5/2025"
+3/5/25,Jacob Zieb,ziebajac@msu.edu,Trying to figure out a poorly documented/old pipeline (MetaXcan) which has missing examples
+3/17/25,person x,*,"Two people (one who has been he previously but I forget the name) asking a numberof questions about Perseus (proteomics, specifically s0 correciton), heatmaps/hcults, Cytoscpe type figures + some jobs issues realted to #!/bin/bash --login"
+3/17/25,person y,*,"Two people (one who has been he previously but I forget the name) asking a numberof questions about Perseus (proteomics, specifically s0 correciton), heatmaps/hcults, Cytoscpe type figures + some jobs issues realted to #!/bin/bash --login"
+3/17/25,Yosia Mugume (Benning Lab),mugumeyo@msu.edu,

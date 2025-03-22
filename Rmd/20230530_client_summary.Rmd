@@ -1,0 +1,138 @@
+---
+title: "20230530 Client Summary"
+author: "Stephanie Hickey"
+date: "5/30/2023"
+output: html_document
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(patchwork)
+library(hrbrthemes)
+library(lubridate)
+clients = read.delim("20230530_client_summary.txt")
+```
+
+Since August 2022, we have had `r nrow(clients)` client requests, including requests for analysis advice, grant support, and data analysis services, from `r length(unique(clients$PI))` different research groups across `r length(unique(clients$Institution))` institutions.
+
+### Requests by request service type
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=3.5, fig.height=3.5, fig.align='center'}
+tally_service = 
+  clients %>% 
+  group_by(Service.Type) %>%
+  tally()
+
+p = 
+  ggplot(tally_service, aes(x=Service.Type, y=n)) +
+    geom_bar(stat="identity", fill = "#18453B") +
+    geom_text(aes(label=n), vjust=-0.3, size=3.5) +
+    ylab("number of requests") +
+    theme_classic()
+  
+plot(p)
+
+ggsave(p, file = "requests_per_service_type.png", width = 3.5, height = 3.5)
+
+n_charged = nrow(clients %>%
+                         filter(!is.na(Charge)))
+```
+
+We have invoiced or sent estimates for `r n_charged` data analysis projects, totaling `r paste0("$",sum(clients$Charge, na.rm = TRUE))` with a median cost of `r paste0("$",median(clients$Charge,, na.rm = TRUE))` per project.
+
+### Requests per project type
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width = 4, fig.height = 5,fig.align='center'}
+tally_service = 
+  clients %>% 
+  select(Project.Type.Broad) %>%
+  mutate(Project.Type.Broad = strsplit(as.character(Project.Type.Broad), ",")) %>% 
+  unnest(Project.Type.Broad) %>%
+  group_by(Project.Type.Broad) %>%
+  tally()
+
+tally_service$Project.Type.Broad <- factor(tally_service$Project.Type.Broad,                  
+                          levels = tally_service$Project.Type.Broad[order(tally_service$n, decreasing = TRUE)])
+
+p = 
+  ggplot(tally_service, aes(x=Project.Type.Broad, y=n)) +
+    geom_bar(stat="identity", fill = "#18453B") +
+    geom_text(aes(label=n), vjust=-0.3, size=3.5) +
+    ylab("number of requests") +
+    xlab("Project Type") +
+    theme_classic() +
+    theme(axis.text.x = element_text(angle = 45, hjust=1))
+  
+plot(p)
+
+ggsave(p, file = "requests_per_analysis_type.png", width = 7, height = 5)
+```
+
+### MSU requests per department and college
+
+Requests come from `r length(clients %>% filter(Institution == "MSU") %>% pull(Deparment) %>% unique)` departments across `r length(clients %>% filter(Institution == "MSU") %>% pull(College) %>% unique)` colleges.
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=8, fig.width=15}
+tally_dep = 
+  clients %>% 
+  filter(Institution == "MSU") %>%
+  group_by(Deparment) %>%
+  tally() %>%
+  arrange(desc(n))
+
+tally_dep$Deparment <- factor(tally_dep$Deparment,                  
+                          levels = tally_dep$Deparment[order(tally_dep$n, decreasing = FALSE)])
+
+p1 =
+ggplot(tally_dep, aes(x=Deparment, y=n)) +
+    geom_bar(stat="identity", fill = "#18453B") +
+    geom_text(aes(label=n), hjust=-0.3, size=3.5) +
+    ylab("number of requests") +
+    xlab("Department") +
+    theme_classic() +
+    coord_flip()
+    #theme(axis.text.x = element_text(angle = 45, hjust=1))
+
+tally_col = 
+  clients %>% 
+  filter(Institution == "MSU") %>%
+  group_by(College) %>%
+  tally() %>%
+  arrange(desc(n))
+
+tally_col$College <- factor(tally_col$College,                  
+                          levels = tally_col$College[order(tally_col$n, decreasing = FALSE)])
+
+p2 =
+ggplot(tally_col, aes(x=College, y=n)) +
+    geom_bar(stat="identity", fill = "#18453B") +
+    geom_text(aes(label=n), hjust=-0.3, size=3.5) +
+    ylab("number of requests") +
+    xlab("College") +
+    theme_classic() +
+    coord_flip()
+
+p = p1 + p2
+plot(p)
+ggsave(p, file = "requests_per_department_college.png", width = 15, height = 8)
+```
+
+### Requests over time
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=9, fig.height=5}
+
+clients$Contact_Date = mdy(clients$Contact_Date)
+
+tally_date = 
+  clients %>%
+  mutate(month = lubridate::floor_date(Contact_Date, "month")) %>%
+  group_by(month) %>%
+  tally()
+
+p <- ggplot(tally_date, aes(x=month, y=n)) +
+  geom_line(color="#18453B") +
+  geom_point() +
+  ylab("number of requests") +
+  scale_x_date(date_labels="%b %y", date_breaks  ="1 month") +
+theme_minimal()
+  
+p
+
+ggsave(p, file = "requests_per_month.png", width = 9, height = 5)
+```
