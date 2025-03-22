@@ -1,7 +1,6 @@
 # Bioinformatics Core Business Summary Reports
-**Stephanie Hickey, PhD**
-**Associate Director**
----
+**Stephanie Hickey, PhD** 
+**Associate Director**  
 
 # Reports
 
