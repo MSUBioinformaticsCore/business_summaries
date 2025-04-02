@@ -27,10 +27,10 @@ library(hrbrthemes)
 library(lubridate)
 library(ggalluvial)
 
-clients = read.csv("/Users/stephanielepp/Desktop/BioinformaticsCore/bussiness_summaries/clients.csv")
+clients = read.csv("/Users/stephanielepp/Desktop/BioinformaticsCore/business_summaries/clients.csv")
 
 invoiced = 
-  readxl::read_excel("/Users/stephanielepp/Desktop/BioinformaticsCore/bussiness_summaries/invoiced.xlsx") %>%
+  readxl::read_excel("/Users/stephanielepp/Desktop/BioinformaticsCore/business_summaries/invoiced.xlsx") %>%
   rename(Total.Cost = "Total Cost",
          Invoice.Date = "Invoice Date")
 
@@ -354,7 +354,7 @@ p
 
 ```{r, echo=FALSE, eval=T, message=FALSE}
 office_hours =
-  read.csv("/Users/stephanielepp/Desktop/BioinformaticsCore/bussiness_summaries/Bioinformatics_Core_Help_Hours.csv") %>%
+  read.csv("/Users/stephanielepp/Desktop/BioinformaticsCore/business_summaries/Bioinformatics_Core_Help_Hours.csv") %>%
   filter(!is.na(Name))
 
 office_hours$Date = mdy(office_hours$Date)
