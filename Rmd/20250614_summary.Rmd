@@ -342,7 +342,7 @@ p <- ggplot(tally_inv, aes(x=as.factor(FY), y=Total.Invoiced, group=1)) +
   geom_point(size=1) +
   geom_label(label = tally_inv$Curency, size = 2.5) + 
   ylab("Total Invoiced") +
-  xlab("fiscal quarter") +
+  xlab("fiscal year") +
 theme_minimal()
   
 p
