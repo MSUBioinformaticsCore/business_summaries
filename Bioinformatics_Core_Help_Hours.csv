@@ -45,3 +45,18 @@ Date,Name,Email,Notes
 3/17/25,person x,*,"Two people (one who has been he previously but I forget the name) asking a numberof questions about Perseus (proteomics, specifically s0 correciton), heatmaps/hcults, Cytoscpe type figures + some jobs issues realted to #!/bin/bash --login"
 3/17/25,person y,*,"Two people (one who has been he previously but I forget the name) asking a numberof questions about Perseus (proteomics, specifically s0 correciton), heatmaps/hcults, Cytoscpe type figures + some jobs issues realted to #!/bin/bash --login"
 3/17/25,Yosia Mugume (Benning Lab),mugumeyo@msu.edu,
+4/2/25,Jacob Zieb,ziebajac@msu.edu,Looking at coefficients for his phenotyp models/trying to understand why such large negative coeffs (overfitting). Following up in lab on Friday
+4/2/25,Yosia Mugume (Benning Lab),mugumeyo@msu.edu,Results from using single end data confirm previous results. Yosia is going to incoporate that into a paper + this confirms we can use SE reads in TC hunter (though we miss out on discordant reads as evidence)
+4/9/25,Jacob Zieb,ziebajac@msu.edu,Further diagnosing issues with negative heritability
+4/9/25,Dylan Luce,lucedyla@msu.edu,Troubleshooting moving the Transit run to scratch
+4/9/25,Glorian,berrosvz@msu.edu,"Fixed gff files with AGAT, GenomeTools, Gffread approach. System AGAT is broken"
+4/29/25,Jacob Zieb,ziebajac@msu.edu,Working on getting data through imputation step of MetaXcan
+4/29/25,Serena Lotreks,lotrecks@msu.edu,Getting Globus personal to connect to mapped drive (ICER)
+5/13/25,John Vusich,,Batch correcting + identifying outlier/odd samples in RNA-Seq data
+5/20/25,John Vusich,,Scavenger queue through Nextflow
+5/20/25,Prarthna Mudumala,,Penn CNV pipeline
+5/27/25,John Vusich,,RNA-Seq applications and career advice
+4/16/25,NA,NA,(Forget to mark down people)
+4/22/25,NA,NA,(Had car toruble and missed part of the session)
+5/6/25,NA,NA,"(No attendance, myself a number of people who usually attend were at a Genetics and Genomics seminar until at least 3pm)"
+6/3/25,NA,NA,(No Attendance)

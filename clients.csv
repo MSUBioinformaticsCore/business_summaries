@@ -40,7 +40,7 @@ Kimberly Dodd,doddkimb@msu.edu,Kimberly Dodd,doddkimb@msu.edu,MSU,Veterinary Dia
 Carrie Givens,cgivens@usgs.gov,Carrie Givens,cgivens@usgs.gov,USGS,Upper Midwest Water Science Center,NA,shotgun metagenomics,Data Analysis,6/16/23,metagenomics,BCC-26
 Carrie Givens,cgivens@usgs.gov,Carrie Givens,cgivens@usgs.gov,USGS,Upper Midwest Water Science Center,NA,shotgun metagenomics,Data Analysis,6/16/23,metagenomics,BCC-25
 Khelsea Bahr,bahrkhel@msu.edu,unknown,unknown,MSU,NA,College of Veterinary Medicine,Circos plot,Analysis Advice,6/22/23,data visulization,BCC-29
-Scott Counts,countssc@msu.edu,Scott Counts,countssc@msu.edu,MSU,Department of Translational Neuroscience,College of Human Medicine,micro array,Data Analysis,7/2/23,micro array,BCC-36
+Scott Counts,countssc@msu.edu,Scott Counts,countssc@msu.edu,MSU,Department of Translational Neuroscience,College of Human Medicine,microarray,Data Analysis,7/2/23,microarray,BCC-36
 Scott Counts,countssc@msu.edu,Scott Counts,countssc@msu.edu,MSU,Department of Translational Neuroscience,College of Human Medicine,RNA-seq,Data Analysis,7/25/23,RNA-seq,BCC-34
 Tommy Vo,votommyv@msu.edu,Tommy Vo,votommyv@msu.edu,MSU,Department of Biochemistry and Molecular Biology ,CNS,RNA-seq,Data Analysis,7/26/23,RNA-seq,BCC-35
 Katheryn Meek,kmeek@msu.edu,Katheryn Meek,kmeek@msu.edu,MSU,Department of Microbiology and Molecular Genetics,CNS,variant calling,Data Analysis,8/4/23,variant calling,BCC-53
@@ -142,6 +142,24 @@ Doug Workman,workmar1@ferris.edu,Doug Workman,workmar1@ferris.edu,Ferris State U
 Lisa Tiemann,ltiemann@msu.edu,Lisa Tiemann,ltiemann@msu.edu,MSU,"Plant, Soil and Microbial Sciences",CANR,16S amplicon metagenomics,Analysis Advice,2/25/25,metagenomics,BCC-159
 Sarah Tepler Drobnitch,std@colostate.edu,Louise Comas,louise.comas@usda.gov,USDA-ARS,WMRSU,Fort Collins,RNA-seq,Data Analysis,2/26/25,RNA-seq,BCC-160
 Michelle Volk,volkmic1@msu.edu,Jean Tsao,tsao@msu.edu,MSU,Fisheries & Wildlife,CANR,variant calling,Data Analysis,2/27/25,variant calling,BCC-161
-Dayana Gonzalez Bravo,dagonza1@millersville.edu,Dayana Gonzalez Bravo,dagonza1@millersville.edu,Millersville University,Biology,,16S amplicon metagenomics,Project Planning,3/12/25,metagenomics,BCC-162
+Dayana Gonzalez Bravo,dagonza1@millersville.edu,Dayana Gonzalez Bravo,dagonza1@millersville.edu,Millersville University,Biology,NA,16S amplicon metagenomics,Project Planning,3/12/25,metagenomics,BCC-162
 Angela Chen,chenang6@msu.edu,Angela Chen,chenang6@msu.edu,MSU,Nursing,Nursing,metabolomics,Grant Support,3/19/25,metabolomics,BCPS-15
 Samantha Westcott,westco20@msu.edu,Elizabeth Heath-Heckman,each@msu.edu,MSU,Integrative Biology,CNS,Genome annotation,Data Analysis,3/27/25,Genome annotation,BCC-164
+Mariah Meek,mhmeek@msu.edu,Mariah Meek,mhmeek@msu.edu,MSU,Integrative Biology,CNS,population genomics,Data Analysis,4/22/25,population genomics,BCC-166
+Sarah Gonzalez Henao,gonz1165@msu.edu,Matt Schrenk ,schrenkm@msu.edu,MSU,Department of Earth & Environmental Sciences,CNS,metagenomics,Analysis Advice,4/23/25,metagenomics,BCC-167
+Mariah Jansen,jansenm2@msu.edu,Kwangwook Kim,kkim@msu.edu,MSU,Animal Science,CANR,metagenomics,Project Planning,4/23/25,metagenomics,BCC-168
+Guo-qing Song,songg@msu.edu,Guo-qing Song,songg@msu.edu,MSU,Horticulture,CANR,RNA-seq,Project Planning,4/30/25,RNA-seq,BCC_170
+Mohamed Ibrahim Khalil,khalilm5@msu.edu,Dohun Pyeon,dpyeon@msu.edu,MSU,Microbiology & Molecular Genetics,CNS,RNA-seq,Data Analysis,4/27/25,RNA-seq,BCC-169
+Xianshuang Liu,liuxia91@msu.edu,Xianshuang Liu,liuxia91@msu.edu,Henry Ford Health,Physiology,College of Human Medicine,RNA-seq,Data Analysis,5/13/25,RNA-seq,BCC-173
+Andrea Luttman,luttman3@msu.edu,Cathy Ernst,ernstc@msu.edu,MSU,Animal Science,CANR,WGBS,Data Analysis,5/15/25,WGBS,BCC-174
+Nairi Azazian,azaziann@msu.edu,Amy Ralston,aralston@msu.edu,MSU,Biochemistry and Molecular Biology,CNS,RNA-seq / scRNA-seq integration,Data Analysis,5/19/25,scRNA-seq,BCC-176
+Naureen Fatima,fatimana@msu.edu,Kyle Poulsen,poulsenk@msu.edu,MSU,Pharmacology & Toxicology,College of Human Medicine,scRNA-seq,Project Planning,5/19/25,scRNA-seq,BCPP-33
+Jaspreet Singh,singhj48@msu.edu,Jaspreet Singh,singhj48@msu.edu,Henry Ford Health,Neurology,NA,variant calling,Project Planning,5/23/25,variant calling,BCC-178
+Scott Counts,countssc@msu.edu,Scott Counts,countssc@msu.edu,MSU,Department of Translational Neuroscience,College of Human Medicine,WGCNA,Data Analysis,5/28/25,microarray,BCC-179
+Thomas Scarborough,scarbo23@msu.edu,S. Patrick Walton,spwalton@msu.edu,MSU,Chemical Engineering & Material Sciences,EGR,miRNA-seq,Project Planning,5/28/25,RNA-seq,BCC-180
+Andrew Eagar,eagarand@gmail.com,Chris Blackwood,blackw79@msu.edu,MSU,Plant Biology,CNS,RNA-seq,Project Planning,5/29/25,RNA-seq,BCC-181
+Eunhee Yi,yieunhee@msu.edu,Eunhee Yi,yieunhee@msu.edu,MSU,Physiology,College of Human Medicine,RNA-seq,Grant Support,6/3/25,RNA-seq,BCPS-17
+Victoria Bailey ,baileyv4@msu.edu,Viviane Gomes,leitegom@msu.edu,MSU,Small Animal Clinical Sciences,College of Veterinary Medicine,WGBS + RNA-seq,Project Planning,6/5/25,multiomics,BCC-183
+Victoria Watson,watsonvi@msu.edu,Victoria Watson,watsonvi@msu.edu,MSU,Pathobiology and Diagnostics Investigation,College of Veterinary Medicine,metagenomics,Data Analysis,6/5/25,metagenomics,BCC-184
+Christina Chan,krischan@egr.msu.edu,Christina Chan,krischan@egr.msu.edu,MSU,Chemical Engineering & Material Sciences,EGR,small RNA-seq,Grant Support,6/9/25,RNA-seq,BCPS-18
+Mariia Bespalova,bespalo1@msu.edu,Ramani Narayan,narayan@msu.edu,MSU,Chemical Engineering & Material Sciences,EGR,metagenomics,Project Planning,6/10/25,metagenomics,BCC-186
