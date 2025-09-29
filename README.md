@@ -11,6 +11,6 @@
 - [2025.03.21 (FY23.Q1-FY25.Q3)](https://msubioinformaticscore.github.io/business_summaries/html/20250321_summary.html)
 - [2025.04.02 (FY23.Q1-FY25.Q3)](https://msubioinformaticscore.github.io/business_summaries/html/20250402_summary.html)
 - [2025.06.26 (FY23.Q1-FY25.Q4)](https://msubioinformaticscore.github.io/business_summaries/html/20250626_summary.html)
-- [2025.06.26 (FY23.Q1-FY26.Q1)](https://msubioinformaticscore.github.io/business_summaries/html/20250929_summary.html)
+- [2025.09.29 (FY23.Q1-FY26.Q1)](https://msubioinformaticscore.github.io/business_summaries/html/20250929_summary.html)
 
 
